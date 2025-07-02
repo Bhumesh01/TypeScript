@@ -35,3 +35,7 @@ function runAfterOneSec(func: ()=>void){
     setTimeout(func, 1000);
 }
 runAfterOneSec(()=> console.log("harkirat"));
+
+// experimenting with tsconfig
+const greet  = (name: string)=> `Hello,${name}`; // code remains same in index.js if target is es2022/es20116
+// var greet = function (name) { return "Hello,".concat(name); }; // code if target is es5
