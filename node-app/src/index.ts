@@ -60,3 +60,56 @@ function isLegal(user:userType):boolean{
     return user.age>=18?true:false;
 }
 console.log(isLegal(user));
+
+//Implementing interfaces
+interface People{
+    name: string;
+    age: number;
+    greet: (phrase: string)=>void;
+}
+const person:People = {
+    name: "Bhumesh",
+    age: 20,
+    greet: (phrase: string) => console.log(`${phrase}, ${person.name}`),
+}
+person.greet("Hello");
+class Manager implements People{
+    name: string;
+    age: number;
+    constructor(n: string, a:number){
+        this.name = n;
+        this.age = a;
+    }
+    greet(phrase: string){
+        console.log(`${phrase}, ${this.name}`);
+    }
+}
+let manager1 = new Manager("Bhumesh", 20);
+manager1.greet("Welcome");
+
+// Abstract Class
+abstract class Shape {
+  abstract name: string;
+
+  abstract calculateArea(): number;
+  // it can also have some of the implementation
+  describe(): void {
+    console.log(`This shape is a ${this.name} with an area of ${this.calculateArea()} units squared.`);
+  }
+}
+
+class Rectangle extends Shape {
+  name = "Rectangle";
+
+  constructor(public width: number, public height: number) {
+    super();
+  }
+
+  // Implement the abstract method
+  calculateArea(): number {
+    return this.width * this.height;
+  }
+}
+let rectangle = new Rectangle(10, 2);
+console.log(rectangle.calculateArea());
+rectangle.describe();
