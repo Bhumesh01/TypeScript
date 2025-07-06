@@ -40,7 +40,7 @@ runAfterOneSec(()=> console.log("harkirat"));
 const greet  = (name: string)=> `Hello,${name}`; // code remains same in index.js if target is es2022/es20116
 // var greet = function (name) { return "Hello,".concat(name); }; // code if target is es5
 // "noImplicitAny": truue by default and it means TypeScript will error if a variable or parameter type is not specified and would otherwise be 'any'. By default, it is false unless set to true in tsconfig.
-*/
+
 // Interfaces 
 // How can you assign types to objects? To assign a type to the user object, you can use interfaces
 interface userType {
@@ -112,4 +112,60 @@ class Rectangle extends Shape {
 }
 let rectangle = new Rectangle(10, 2);
 console.log(rectangle.calculateArea());
-rectangle.describe();
+rectangle.describe();*/
+
+
+// Types: Very similar to interfaces , types let you aggregate data together.
+//But they let you do a few other things.
+// 1. Unions: Let’s say you want to print the id of a user, which can be a number or a string.
+type StringOrNumber = string | number;
+function printId(id: StringOrNumber) {
+console.log(`ID: ${id}`);
+}
+
+printId(101); // ID: 101
+printId("202"); // ID: 202
+
+function sum(a:StringOrNumber, b: StringOrNumber):StringOrNumber{
+if(typeof(a) === "string" || typeof(b) === "string"){
+return String(a) + String(b);
+}
+return a+b;
+}
+console.log(sum("Bhumesh", 56));
+console.log(sum(4,5));
+// 2. Intersection: What if you want to create a type that has every property of multiple types/ interfaces. Could be done with the help of types
+type Employee = {
+name: string;
+startDate: Date;
+};
+
+type Manager = {
+name: string;
+department: string;
+};
+
+type TeamLead = Employee & Manager;
+
+const teamLead: TeamLead = {
+name: "harkirat",
+startDate: new Date(),
+department: "Software developer"
+};
+
+// Assignment: Create 2 types called User and Admin, take a function that takes either a user or admin as input, and returns strinng saying "Welcome, [name]"
+interface User{
+    name: string;
+    age: number|string;
+}
+interface Admin{
+    name: string;
+    permissions: string;
+}
+type adminOruser = User|Admin;
+function displayMessage(person:adminOruser):string{
+    //i can't use person.age/person.permissions directly here
+    return `Welcome, ${person.name}`
+}
+console.log(displayMessage({name:"Bhumesh", permissions: "superAdmin"}));
+console.log(displayMessage({name:"Bhumi", age: 20}));
