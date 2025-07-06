@@ -112,7 +112,7 @@ class Rectangle extends Shape {
 }
 let rectangle = new Rectangle(10, 2);
 console.log(rectangle.calculateArea());
-rectangle.describe();*/
+rectangle.describe();
 
 
 // Types: Very similar to interfaces , types let you aggregate data together.
@@ -168,4 +168,28 @@ function displayMessage(person:adminOruser):string{
     return `Welcome, ${person.name}`
 }
 console.log(displayMessage({name:"Bhumesh", permissions: "superAdmin"}));
-console.log(displayMessage({name:"Bhumi", age: 20}));
+console.log(displayMessage({name:"Bhumi", age: 20}));*/
+
+//Arrays in TypeScript: If you want to access arrays in typescript, it’s as simple as adding a [] annotation next to the type
+//Eg 1: Find max Element in an array
+function maxElement(array:number[]):number{
+    let num:number = 0;
+    for(let i:number=0; i<array.length; i++){
+        if(num<array[i]){
+            num += i;
+        }
+    }
+    return num;
+}
+console.log(maxElement([2,8,1,0,-1,2,90]));
+//Eg 2: Given a list of users, filter out the users that are legal (greater than 18 years of age)
+interface User {
+	firstName: string;
+	lastName?: string;
+	age: number;
+}
+function findLegal(userList: User[]):User[]{
+    return userList.filter(user=>user.age>=18);
+}
+
+console.log(findLegal([{firstName: "Bhumesh", age: 20}, {firstName: "Bhavya", age: 21}, {firstName: "Vaneesha", age: 10}, {firstName: "Dityaa", age: 3}]))
