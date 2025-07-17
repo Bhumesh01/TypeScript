@@ -193,7 +193,7 @@ function findLegal(userList: User[]):User[]{
 }
 
 console.log(findLegal([{firstName: "Bhumesh", age: 20}, {firstName: "Bhavya", age: 21}, {firstName: "Vaneesha", age: 10}, {firstName: "Dityaa", age: 3}]))
-*/
+
 
 // Enums: Enums (short for enumerations) in TypeScript are a feature that allows you to define a set of named constants.
 //Example:
@@ -221,4 +221,29 @@ enum ResponseStatus {
 //     }
 //     // and so on...
 // 		res.status(ResponseStatus.Success).json({});
-// })
+// }) 
+
+//Generics: Generics are a Language Independent Concept
+//Problem Statement: Let’s say you have a function that needs to return the first element of an array. Array can be of type either string or integer. How would you solve this problem?
+type StringOrNumber = string|number;
+function getFirstElement(arr:StringOrNumber[]):StringOrNumber{
+    return arr[0];
+}
+// What is the problem in this approach?
+// User can send different types of values in inputs, without any type errors
+let first = getFirstElement(["1", "2", 30]);
+console.log(first);
+// Typescript isn’t able to infer the right type of the return type
+const el = getFirstElement(["harkiratSingh", "ramanSingh"]);
+console.log(el.toLowerCase()) // This Line gives error
+// Property 'toLowerCase' does not exist on type 'StringOrNumber'. Property 'toLowerCase' does not exist on type 'number'.
+*/
+//Solution - Generics
+// Generics enable you to create components that work with any data type while still providing compile-time type safety.
+function getFirstElement<T>(arr: T[]):T{
+    return arr[0];
+}
+// const el = getFirstElement<string>([1, "Bhumi", "Bhavya"]); // This line raises error
+const el = getFirstElement<string>(["Bhumi", "Bhavya"]);
+console.log(el);
+console.log(el.toLocaleLowerCase());
