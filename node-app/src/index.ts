@@ -168,7 +168,7 @@ function displayMessage(person:adminOruser):string{
     return `Welcome, ${person.name}`
 }
 console.log(displayMessage({name:"Bhumesh", permissions: "superAdmin"}));
-console.log(displayMessage({name:"Bhumi", age: 20}));*/
+console.log(displayMessage({name:"Bhumi", age: 20}));
 
 //Arrays in TypeScript: If you want to access arrays in typescript, it’s as simple as adding a [] annotation next to the type
 //Eg 1: Find max Element in an array
@@ -193,3 +193,32 @@ function findLegal(userList: User[]):User[]{
 }
 
 console.log(findLegal([{firstName: "Bhumesh", age: 20}, {firstName: "Bhavya", age: 21}, {firstName: "Vaneesha", age: 10}, {firstName: "Dityaa", age: 3}]))
+*/
+
+// Enums: Enums (short for enumerations) in TypeScript are a feature that allows you to define a set of named constants.
+//Example:
+enum Direction{
+    Up = 1,
+    Down,
+    Left,
+    Right
+}
+function doSomething(keyPressed:Direction):void{
+    console.log(keyPressed);
+}
+
+doSomething(Direction.Down); 
+// Use Case 2
+enum ResponseStatus {
+    Success = 200,
+    NotFound = 404,
+    Error = 500
+}
+
+// app.get("/', (req, res) => {
+//     if (!req.query.userId) {
+// 			res.status(ResponseStatus.Error).json({})
+//     }
+//     // and so on...
+// 		res.status(ResponseStatus.Success).json({});
+// })
